@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Carnet de Recettes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+     <!-- Bouton de mode sombre -->
+<button id="toggle-dark-mode" class="action_btn">Mode Sombre</button>
+
+    <div class="navbar">
+      <div class="logo"><a href="#">Recettly</a></div>
+      <ul class="link">
+        <li><a href="Accueil">Accueil</a></li>
+        <li><a href="Ajouter une Recette">Ajouter une Recette</a></li>
+        <li><a href="Mes Recettes">Mes Recettes</a></li>
+        <li><a href="Contact">Contact</a></li>
+      </ul>
+      <a href="#" class="action-btn">Get started</a>
+    </div>
+
+    <div class="container" id="home">
+      <h1>
+        Le Carnet de Recettes en ligne pour avoir les recettes sous la mains
+      </h1>
+
+      <!-- Section de recherche et filtres avancés -->
+<section id="search-filters">
+  <h2>Recherche de Recettes</h2>
+  <form id="search-form">
+    <input
+      type="text"
+      id="search-title"
+      placeholder="Rechercher par nom de recette"
+    />
+    <input
+      type="text"
+      id="search-ingredient"
+      placeholder="Rechercher par ingrédient"
+    />
+    <input
+      type="number"
+      id="search-time"
+      placeholder="Temps de préparation (en minutes)"
+      min="0"
+    />
+    <select id="search-difficulty">
+      <option value="">Difficulté</option>
+      <option value="facile">Facile</option>
+      <option value="moyen">Moyen</option>
+      <option value="difficile">Difficile</option>
+    </select>
+    <button type="submit">Rechercher</button>
+  </form>
+</section>
+
+<!-- Section de catégorisation des recettes -->
+<section id="recipe-categories">
+  <h2>Catégories de Recettes</h2>
+  <ul class="categories-list">
+    <li><a href="#entrees">Entrées</a></li>
+    <li><a href="#plats">Plats Principaux</a></li>
+    <li><a href="#desserts">Desserts</a></li>
+    <li><a href="#vegetarien">Végétarien</a></li>
+    <li><a href="#sans-gluten">Sans Gluten</a></li>
+  </ul>
+</section>
+
+<!-- Section de commentaires et de notation -->
+<section id="comments-section">
+  <h2>Commentaires et Avis</h2>
+  
+  <div class="rating">
+    <span>Notez cette recette :</span>
+    <div class="stars">
+      <input type="radio" name="rating" id="star1" value="5" />
+      <label for="star1" class="star">★</label>
+      <input type="radio" name="rating" id="star2" value="4" />
+      <label for="star2" class="star">★</label>
+      <input type="radio" name="rating" id="star3" value="3" />
+      <label for="star3" class="star">★</label>
+      <input type="radio" name="rating" id="star4" value="2" />
+      <label for="star4" class="star">★</label>
+      <input type="radio" name="rating" id="star5" value="1" />
+      <label for="star5" class="star">★</label>
+    </div>
+  </div>
+
+  <!-- Section de liste de courses -->
+<section id="shopping-list">
+  <h2>Liste de Courses</h2>
+  <p>Sélectionnez les recettes pour générer votre liste de courses.</p>
+
+  <div class="recipe-selection">
+    <h3>Recettes Sélectionnées :</h3>
+    <ul id="selected-recipes">
+      <li>Recette 1 <button class="remove-recipe">Retirer</button></li>
+      <li>Recette 2 <button class="remove-recipe">Retirer</button></li>
+      <!-- Ajoutez dynamiquement les recettes sélectionnées ici -->
+    </ul>
+  </div>
+
+  <button id="generate-list">Générer la Liste de Courses</button>
+
+  <div id="shopping-list-output" style="display: none;">
+    <h3>Votre Liste de Courses :</h3>
+    <ul id="shopping-list-items">
+      <!-- Les ingrédients générés apparaîtront ici -->
+    </ul>
+  </div>
+</section>
+
+<!-- Section de Personnalisation des Recettes -->
+<section id="recipe-customization">
+  <h2>Personnalisez vos Recettes</h2>
+  <p>Choisissez vos préférences alimentaires pour adapter les recettes :</p>
+
+  <form id="customization-form">
+    <label>
+      <input type="checkbox" name="gluten-free" id="gluten-free" />
+      Sans Gluten
+    </label>
+    <label>
+      <input type="checkbox" name="vegan" id="vegan" />
+      Végétalien
+    </label>
+    <label>
+      <input type="checkbox" name="low-sugar" id="low-sugar" />
+      Faible en Sucre
+    </label>
+
+    <button type="submit">Adapter les Recettes</button>
+  </form>
+
+  <div id="customized-recipes">
+    <h3>Recettes Adaptées :</h3>
+    <ul id="customized-recipes-list">
+      <!-- Les recettes adaptées apparaîtront ici -->
+    </ul>
+  </div>
+</section>
+
+<!-- Section de calculateur de portions -->
+<section id="portion-calculator">
+  <h2>Calculateur de Portions</h2>
+  <p>Ajustez les ingrédients en fonction du nombre de portions souhaitées.</p>
+  
+  <label for="portion-input">Nombre de portions :</label>
+  <input type="number" id="portion-input" value="1" min="1" />
+
+  <button id="calculate-button">Calculer</button>
+
+  <div id="ingredients-list">
+    <h3>Ingrédients :</h3>
+    <ul id="ingredients">
+      <li data-base-amount="200">200g de farine</li>
+      <li data-base-amount="100">100g de sucre</li>
+      <li data-base-amount="50">50g de beurre</li>
+    </ul>
+  </div>
+</section>
+
+  <form id="comment-form">
+    <textarea
+      id="comment"
+      placeholder="Laissez un commentaire..."
+      rows="4"
+      required
+    ></textarea>
+    <button type="submit">Envoyer</button>
+  </form>
+
+  <div class="comments-list">
+    <h3>Commentaires:</h3>
+    <ul>
+      <li><strong>Utilisateur 1:</strong> Excellente recette! Facile à suivre.</li>
+      <li><strong>Utilisateur 2:</strong> J'ai adoré, mes amis ont adoré aussi!</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Section Blog -->
+<section id="blog">
+  <h2>Blog Culinaire</h2>
+  <p>Découvrez nos articles sur la cuisine, des conseils de nutrition, des techniques culinaires, et des recettes de saison.</p>
+  
+  <div class="blog-posts">
+    <article class="blog-post">
+      <h3>10 Conseils pour Manger Sainement</h3>
+      <p>Apprenez comment équilibrer votre alimentation avec ces conseils pratiques pour manger sainement sans sacrifier le goût.</p>
+      <a href="#" class="read-more">Lire la suite</a>
+    </article>
+    
+    <article class="blog-post">
+      <h3>Techniques de Cuisine Essentielles</h3>
+      <p>Maîtrisez les techniques de cuisine de base qui vous aideront à préparer des plats délicieux et impressionnants.</p>
+      <a href="#" class="read-more">Lire la suite</a>
+    </article>
+    
+    <article class="blog-post">
+      <h3>Recettes de Saison : Automne</h3>
+      <p>Découvrez des recettes délicieuses et réconfortantes pour profiter des saveurs de l'automne.</p>
+      <a href="#" class="read-more">Lire la suite</a>
+    </article>
+    
+    <!-- Ajoutez d'autres articles ici -->
+  </div>
+</section>
+
+<!-- Section de partage social -->
+<section id="social-sharing">
+  <h2>Partagez cette recette</h2>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_DE_LA_RECETTE" target="_blank" class="social-icon fab fa-facebook-f"></a>
+    <a href="https://twitter.com/intent/tweet?url=URL_DE_LA_RECETTE&text=Venez%20voir%20cette%20recette!" target="_blank" class="social-icon fab fa-twitter"></a>
+    <a href="https://www.instagram.com/" target="_blank" class="social-icon fab fa-instagram"></a>
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=URL_DE_LA_RECETTE" target="_blank" class="social-icon fab fa-linkedin-in"></a>
+  </div>
+</section>
+
+      <!-- Liste des recettes -->
+      <section id="recipe-list">
+        <h2>Mes Recettes</h2>
+        <div id="recipe-list-content"></div>
+      </section>
+
+      <!-- Section À propos -->
+      <section id="about">
+        <h2>À propos de Recettly</h2>
+        <p>
+          Recettly est votre carnet de recettes personnel pour organiser et
+          partager vos meilleures créations culinaires. Que vous soyez chef ou
+          amateur, cette plateforme vous aide à capturer vos inspirations
+          gustatives.
+        </p>
+      </section>
+    </div>
+
+   <!-- Section de vidéos de cuisine -->
+<section id="cooking-videos">
+  <h2>Vidéos de Cuisine</h2>
+  <p>Découvrez nos vidéos pour apprendre à préparer vos recettes préférées étape par étape.</p>
+  
+  <div class="video-container">
+    <div class="video">
+      <h3>Recette 1: Tarte aux Pommes</h3>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="video">
+      <h3>Recette 2: Soupe de Tomates</h3>
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <!-- Ajoutez d'autres vidéos ici -->
+  </div>
+</section>
+
+    
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <h3>Liens Utiles</h3>
+          <ul>
+            <li><a href="À propos">À propos</a></li>
+            <li><a href="Contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Suivez-nous</h3>
+          <a href="#" class="fab fa-facebook-f"></a>
+          <a href="#" class="fab fa-twitter"></a>
+          <a href="#" class="fab fa-instagram"></a>
+          <a href="#" class="fab fa-linkedin-in"></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Recettly. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
